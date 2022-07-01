@@ -6,16 +6,20 @@ import { Tab, Text } from "@rneui/themed";
 import { Layout } from "./componets/Layout";
 import { GetDb } from "./stores/misc";
 import tw from "twrnc";
+import { Provider } from "react-redux";
+import { Store } from "./stores/Store";
 
 export default function App() {
   // const db = GetDb();
 
   return (
-    <SafeAreaView style={tw`flex-1`}>
-      {/* <View style={tw`flex-1`}>
+    <Provider store={Store}>
+      <SafeAreaView style={tw`flex-1`}>
+        {/* <View style={tw`flex-1`}>
         <Text style={tw`text-red-500`}>Hello</Text>
       </View> */}
-      <Layout />
-    </SafeAreaView>
+        <Layout />
+      </SafeAreaView>
+    </Provider>
   );
 }
