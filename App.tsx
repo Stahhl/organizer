@@ -3,7 +3,7 @@ import * as SQLite from "expo-sqlite";
 import { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Tab, Text } from "@rneui/themed";
-import { Layout } from "./componets/Layout";
+import { Layout } from "./pages/Layout";
 import tw from "twrnc";
 import { Provider } from "react-redux";
 // import { Store } from "./stores/Store";

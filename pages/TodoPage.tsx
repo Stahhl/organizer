@@ -1,4 +1,4 @@
-import { View, TextInput } from "react-native";
+import { View, TextInput, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Tab, Text } from "@rneui/themed";
 import { createSlice, configureStore } from "@reduxjs/toolkit";
@@ -17,8 +17,8 @@ export function TodoPage() {
 
   return (
     <View>
-      <Text>Hello</Text>
-      <TextInput
+      {/* <Text h1>Hello</Text> */}
+      {/* <TextInput
         onChangeText={(text) => setText(text)}
         onSubmitEditing={() => {
           dispatch(addTodo(text));
@@ -26,6 +26,11 @@ export function TodoPage() {
         }}
         placeholder="what do you need to do?"
         value={text}
+      /> */}
+      <FlatList
+        data={todos}
+        renderItem={({ item }) => <Text>{item.id} - {item.value} - {item.done ? "1" : "0"}</Text>}
+        keyExtractor={(item) => item.id.toString()}
       />
     </View>
   );
