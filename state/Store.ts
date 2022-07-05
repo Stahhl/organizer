@@ -31,7 +31,8 @@ const appSlice = createSlice({
       state.todos[item].done = state.todos[item].done === true ? false : true;
       state.todos.push(state.todos.splice(item, 1)[0]);
     },
-    trashTodo: (state, action) => {
+    deleteTodo: (state, action: PayloadAction<number>) => {
+      console.log("hi");
       const item = state.todos.findIndex((item) => item.id === action.payload);
       if (item > -1) {
         state.todos.splice(item, 1);
@@ -40,7 +41,7 @@ const appSlice = createSlice({
   },
 });
 
-export const { addTodo, changeTodoState, trashTodo } = appSlice.actions;
+export const { addTodo, changeTodoState, deleteTodo } = appSlice.actions;
 export default appSlice.reducer;
 
 const persistConfig = {
