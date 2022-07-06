@@ -22,7 +22,7 @@ export function TodoForm(props: TodoFormProps) {
     <Modal visible={props.modalOpen}>
       <View style={tw`flex-1 flex-col m-1`}>
         <TextInput
-          style={tw`flex-1 shadow-sm  text-center mt-auto`}
+          style={tw`flex-1 shadow-sm text-center mt-auto`}
           placeholder="what do you need to do?"
           value={text}
           onChangeText={setText}

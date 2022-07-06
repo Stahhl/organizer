@@ -8,6 +8,7 @@ import tw from "twrnc";
 export function TodoPage() {
   console.log("TodoPage");
   const [modalOpen, modalToggle] = useState(false);
+  const dispatch = useAppDispatch();
   const todos = useAppSelector((state) => state.todos) as Todo[];
 
   console.log(`todos: ${todos?.length}`);

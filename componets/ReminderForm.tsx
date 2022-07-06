@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 import { Button, Modal, TextInput, View } from "react-native";
-import { addTodo, useAppDispatch } from "../state/Store";
+import { addTodo, ReminderInterval, useAppDispatch } from "../state/Store";
+import { Formik } from "formik";
 import tw from "twrnc";
+import DropDownPicker from "react-native-dropdown-picker";
+import { IntervalPicker } from "./IntervalPicker";
 
 export type ReminderFormProps = {
   modalOpen: boolean;
   modalToggle: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+export type ReminderFormData = {};
+
 export function ReminderForm(props: ReminderFormProps) {
-  function SubmitReminderForm() {
+  const [interval, setInterval] = useState<ReminderInterval>(
+    ReminderInterval.EVERY_DAY
+  );
+  function SubmitReminderForm(tile: string, desc: string) {
     console.log("SubmitReminderForm");
     // dispatch(addTodo(text));
     // setText(null);
@@ -19,13 +27,29 @@ export function ReminderForm(props: ReminderFormProps) {
   return (
     <Modal visible={props.modalOpen}>
       <View style={tw`flex-1 flex-col m-1`}>
-        {/* <TextInput
-            style={tw`flex-1 shadow-sm  text-center mt-auto`}
-            placeholder="what do you need to do?"
-            value={text}
-            onChangeText={setText}
-            onSubmitEditing={SubmitTodoForm}
-          /> */}
+        <Formik
+          initialValues={{ title: "", desc: "" }}
+          onSubmit={(values) => SubmitReminderForm(values.title, values.desc)}
+        >
+          {(props) => (
+            <View style={tw`flex-1 text-left justify-center`}>
+              <TextInput
+                style={tw`shadow-sm p-5 h-1/8`}
+                placeholder="Title..."
+                onChangeText={props.handleChange("title")}
+                value={props.values.title}
+              />
+              <TextInput
+                style={tw`shadow-sm p-5 h-1/6`}
+                placeholder="Description..."
+                onChangeText={props.handleChange("desc")}
+                value={props.values.desc}
+                multiline={true}
+              />
+              <IntervalPicker {...{ intervalType: interval, setIntervalType: setInterval }} />
+            </View>
+          )}
+        </Formik>
         <View style={tw`flex flex-row mt-auto`}>
           <View style={tw`w-1/2`}>
             <Button
@@ -43,7 +67,7 @@ export function ReminderForm(props: ReminderFormProps) {
               color="green"
               onPress={() => {
                 console.log("button - addTodo - save");
-                SubmitReminderForm();
+                SubmitReminderForm("", "");
               }}
             />
           </View>
