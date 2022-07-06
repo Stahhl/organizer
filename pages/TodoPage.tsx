@@ -8,17 +8,9 @@ import tw from "twrnc";
 export function TodoPage() {
   console.log("TodoPage");
   const [modalOpen, modalToggle] = useState(false);
-  const [text, setText] = useState<string>(null);
-  const dispatch = useAppDispatch();
   const todos = useAppSelector((state) => state.todos) as Todo[];
 
   console.log(`todos: ${todos?.length}`);
-
-  function SubmitTodoForm() {
-    dispatch(addTodo(text));
-    setText(null);
-    modalToggle(false);
-  }
 
   return (
     <View style={tw`flex-1`}>

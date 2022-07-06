@@ -11,10 +11,37 @@ export type Todo = {
   value: string;
 };
 
+enum ReminderInterval {
+  day_every_1,
+  day_every_2,
+  day_every_3,
+  day_every_4,
+  day_every_5,
+  day_every_6,
+  week_every_1,
+  week_every_2,
+  week_every_3,
+  month_every_1,
+  month_every_2,
+  month_every_3,
+  yearly,
+}
+
+export type Reminder = {
+  id: number;
+  title: string;
+  description: string;
+  interval: ReminderInterval;
+  lastCompletedOn: Date;
+  nextDueOn: Date;
+}
+
 const appSlice = createSlice({
   name: "todo",
   initialState: {
     todos: [] as Todo[],
+    lastRecalculation: Date.now(),
+    reminders: [] as Reminder[],
   },
   reducers: {
     addTodo: (state, action: PayloadAction<string>) => {
