@@ -1,9 +1,10 @@
 import { View, TextInput, FlatList, Modal, Text, Button } from "react-native";
 import React, { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector, addTodo, Todo } from "../state/Store";
+import { useAppDispatch, useAppSelector, addTodo } from "../utils/Store";
 import { TodoList } from "../componets/TodoList";
 import { TodoForm } from "../componets/TodoForm";
 import tw from "twrnc";
+import { Todo } from "../utils/Types";
 
 export function TodoPage() {
   console.log("TodoPage");

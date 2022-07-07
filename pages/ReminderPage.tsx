@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Text, FlatList, View, Button } from "react-native";
-import { useAppSelector, Reminder } from "../state/Store";
+import { useAppSelector } from "../utils/Store";
 import tw from "twrnc";
 import { ReminderForm } from "../componets/ReminderForm";
+import { Reminder } from "../utils/Types";
 
 export function ReminderPage() {
   console.log("ReminderPage");

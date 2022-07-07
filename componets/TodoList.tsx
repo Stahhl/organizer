@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Text, View } from "react-native";
 import { Button } from "@rneui/themed";
-import { CheckBox } from "@rneui/base";
-import { deleteTodo, Todo, useAppDispatch } from "../state/Store";
+import { deleteTodo, useAppDispatch } from "../utils/Store";
 import tw from "twrnc";
+import { Todo } from "../utils/Types";
 
 export function TodoList(prop: Todo) {
   const dispatch = useAppDispatch();

@@ -1,18 +1,13 @@
-import { Platform, View, StyleSheet } from "react-native";
-import * as SQLite from "expo-sqlite";
-import { useEffect } from "react";
+
+import { Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Tab, Text } from "@rneui/themed";
 import { Layout } from "./pages/Layout";
 import tw from "twrnc";
 import { Provider } from "react-redux";
-// import { Store } from "./stores/Store";
 import { PersistGate } from "redux-persist/integration/react";
-import { Store, Persistor } from "./state/Store";
+import { Store, Persistor } from "./utils/Store";
 
 export default function App() {
-  // const db = GetDb();
-
   return (
     <Provider store={Store}>
       <PersistGate loading={null} persistor={Persistor}>

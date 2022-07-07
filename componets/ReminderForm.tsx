@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Button, Modal, TextInput, View } from "react-native";
-import { addTodo, ReminderInterval, useAppDispatch } from "../state/Store";
+import { addTodo, useAppDispatch } from "../utils/Store";
 import { Formik } from "formik";
 import tw from "twrnc";
 import DropDownPicker from "react-native-dropdown-picker";
 import { IntervalPicker } from "./IntervalPicker";
+import { ReminderInterval } from "../utils/Types";
 
 export type ReminderFormProps = {
   modalOpen: boolean;

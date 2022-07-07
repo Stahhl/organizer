@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ReminderInterval } from "../state/Store";
+import { ReminderInterval } from "../utils/Types";
 import DropDownPicker from "react-native-dropdown-picker";
 
 
