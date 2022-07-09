@@ -18,6 +18,7 @@ export type Reminder = {
   title: string;
   description: string;
   interval: ReminderInterval;
+  daysLeft: number;
   lastCompletedOn: Date;
   nextDueOn: Date;
 };

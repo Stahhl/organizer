@@ -1,9 +1,52 @@
 import { Reminder, ReminderInterval } from "./Types";
 
-export function Recalculate(reminders: Reminder[]) {
+export function CalculateDaysLeft(reminder: Reminder) {
+  const now = new Date();
+  const nextDueOn = new Date(reminder.nextDueOn);
+  const daysLeft = Math.ceil(
+    (nextDueOn.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)
+  );
+  reminder.daysLeft = daysLeft;
+}
+
+export function Reset(reminder: Reminder) {
+  switch (reminder.interval) {
+    case ReminderInterval.EVERY_DAY:
+      reminder.daysLeft = 1;
+      break;
+    case ReminderInterval.EVERY_WEEK:
+      reminder.daysLeft = 7;
+      break;
+    case ReminderInterval.EVERY_OTHER_WEEK:
+      reminder.daysLeft = 14;
+      break;
+    case ReminderInterval.EVERY_THIRD_WEEK:
+      reminder.daysLeft = 21;
+      break;
+    case ReminderInterval.EVERY_MONTH:
+      reminder.daysLeft = 30;
+      break;
+    case ReminderInterval.EVERY_YEAR:
+      reminder.daysLeft = 365;
+      break;
+  }
+}
+
+export function DiffInDays(future: Date, past: Date): number {
+  return Math.ceil((future.getTime() - past.getTime()) / (1000 * 60 * 60 * 24));
+}
+
+export function Recalculate(lastRecalc: Date, reminders: Reminder[]): Date {
+  const now = new Date();
+  const diffInDays = DiffInDays(now, lastRecalc);
+
+  if (diffInDays <= 0) return lastRecalc;
+
   reminders.forEach((element) => {
-    DateCalculator(element);
+    element.daysLeft -= diffInDays;
   });
+
+  return now;
 }
 
 export function DateCalculator(reminder: Reminder) {
