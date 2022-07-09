@@ -21,3 +21,9 @@ export type Reminder = {
   lastCompletedOn: Date;
   nextDueOn: Date;
 };
+
+export type ReminderInput = {
+  title: string;
+  description: string;
+  interval: ReminderInterval;
+}

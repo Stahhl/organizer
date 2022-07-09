@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, TextInput, View } from "react-native";
-import { addTodo, useAppDispatch } from "../utils/Store";
+import { addReminder, useAppDispatch } from "../utils/Store";
 import { Formik } from "formik";
 import tw from "twrnc";
 import DropDownPicker from "react-native-dropdown-picker";
@@ -15,15 +15,14 @@ export type ReminderFormProps = {
 export type ReminderFormData = {};
 
 export function ReminderForm(pageProps: ReminderFormProps) {
+  const dispatch = useAppDispatch();
   const [interval, setInterval] = useState<ReminderInterval>(
     ReminderInterval.EVERY_DAY
   );
 
   function SubmitReminderForm(tile: string, desc: string) {
     console.log("SubmitReminderForm");
-    // dispatch(addTodo(text));
-    // setText(null);
-    // props.modalToggle(false);
+    dispatch(addReminder(null));
   }
 
   return (
@@ -70,7 +69,7 @@ export function ReminderForm(pageProps: ReminderFormProps) {
                     color="green"
                     onPress={() => {
                       console.log("button - reminder - save");
-                      SubmitReminderForm("", "");
+                      props.handleSubmit();
                     }}
                   />
                 </View>

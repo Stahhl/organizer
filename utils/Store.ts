@@ -3,7 +3,21 @@ import { createSlice } from "@reduxjs/toolkit";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { persistStore, persistReducer } from "redux-persist";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
-import { Reminder, Todo } from "./Types";
+import { Reminder, ReminderInput, Todo } from "./Types";
+
+function addReminderFunc(reminders: Reminder[], input: ReminderInput) {
+  console.log("addReminderFunc");
+  // const newReminder: Reminder = {
+  //   id: reminders.length + 1,
+  //   title: input.title,
+  //   description: input.description,
+  //   interval: input.interval,
+  //   lastCompletedOn: new Date(),
+  //   nextDueOn: new Date(),
+  // }
+
+  // reminders.push(newReminder);
+}
 
 const appSlice = createSlice({
   name: "todo",
@@ -22,6 +36,7 @@ const appSlice = createSlice({
       });
       console.log(`hello ${state.todos.length}`);
     },
+    addReminder: (state, action: PayloadAction<ReminderInput>) => addReminderFunc(state.reminders, action.payload),
     changeTodoState: (state, action) => {
       const item = state.todos.findIndex((item) => item.id === action.payload);
       state.todos[item].done = state.todos[item].done === true ? false : true;
@@ -37,7 +52,7 @@ const appSlice = createSlice({
   },
 });
 
-export const { addTodo, changeTodoState, deleteTodo } = appSlice.actions;
+export const { addTodo, addReminder, changeTodoState, deleteTodo } = appSlice.actions;
 export default appSlice.reducer;
 
 const persistConfig = {
