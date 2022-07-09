@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, TextInput, View } from "react-native";
-import { addTodo, useAppDispatch } from "../state/Store";
+import { addTodo, useAppDispatch } from "../utils/Store";
 import tw from "twrnc";
 
 export type TodoFormProps = {

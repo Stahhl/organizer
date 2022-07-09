@@ -5,8 +5,6 @@ import { persistStore, persistReducer } from "redux-persist";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
 import { Reminder, Todo } from "./Types";
 
-
-
 const appSlice = createSlice({
   name: "todo",
   initialState: {

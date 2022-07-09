@@ -2,20 +2,23 @@ import React, { useState } from "react";
 import { ReminderInterval } from "../utils/Types";
 import DropDownPicker from "react-native-dropdown-picker";
 
+function ItemsArray(): { label: ReminderInterval; value: ReminderInterval }[] {
+  const result: { label: ReminderInterval; value: ReminderInterval }[] = [];
+
+  for (const eStr in ReminderInterval) {
+    let eVal: ReminderInterval = ReminderInterval[eStr];
+    result.push({ label: eVal, value: eVal });
+  }
+
+  return result;
+}
 
 export function IntervalPicker(props: {
   intervalType: ReminderInterval;
   setIntervalType: React.Dispatch<React.SetStateAction<ReminderInterval>>;
 }) {
   const [open, setOpen] = useState(false);
-  const [items, setItems] = useState([
-    { label: ReminderInterval.EVERY_DAY, value: ReminderInterval.EVERY_DAY },
-    { label: ReminderInterval.EVERY_WEEK, value: ReminderInterval.EVERY_WEEK },
-    { label: ReminderInterval.EVERY_OTHER_WEEK, value: ReminderInterval.EVERY_OTHER_WEEK },
-    { label: ReminderInterval.EVERY_THIRD_WEEK, value: ReminderInterval.EVERY_THIRD_WEEK },
-    { label: ReminderInterval.EVERY_MONTH, value: ReminderInterval.EVERY_MONTH },
-    { label: ReminderInterval.EVERY_YEAR, value: ReminderInterval.EVERY_YEAR },
-  ]);
+  const [items, setItems] = useState(ItemsArray());
 
   return (
     <DropDownPicker
